@@ -16,11 +16,7 @@ export function Footer({ onSend }: { onSend: (input: IMessage) => void }) {
 
   const handleKeyDown = (event: any) => {
     if (event.key === 'Enter') {
-        const message = {
-            character: selectedCharacter,
-            prompt: input,
-        }
-      onSend(message);
+      handleSend();
     }
   };
 
@@ -72,7 +68,7 @@ export function Footer({ onSend }: { onSend: (input: IMessage) => void }) {
             )}
           </DropdownMenuContent>
         </DropdownMenu>
-        <Button className="text-base w-full" onClick={() => handleSend()} disabled={!input}>
+        <Button className="text-base w-full" onClick={() => handleSend()} disabled={!input || !selectedCharacter}>
           Enviar <Star className="w-4 h-4 ml-2 text-white" />
         </Button>
         </div>
