@@ -17,11 +17,18 @@ export function Painel() {
     setLoading(true);
 
     if(message.prompt){
-    await apiBot({prompt: message.prompt}).then((response) => {
+    await apiBot({prompt: message.prompt, character: message.character}).then((response) => {
+      if(response){
       setResultData((results) => [...(results || []), message, {
         character: message.character,
         result: response,
       }]); 
+    } else{
+      setResultData((results) => [...(results || []), message, {
+        character: message.character,
+        result: "Desculpe, não consegui encontrar a resposta para essa pergunta.",
+      }]);
+    }
     }).finally(() => {
       setLoading(false);
       setShowResult(true);
