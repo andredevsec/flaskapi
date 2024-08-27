@@ -8,6 +8,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { useCharacters } from '@/utils/useApi';
 import { IMessage } from '@/interfaces/message';
 
+
 export function Footer({ onSend }: { onSend: (input: IMessage) => void }) {
   const { characters, loading } = useCharacters();
   const [input, setInput] = useState('');
@@ -39,7 +40,7 @@ export function Footer({ onSend }: { onSend: (input: IMessage) => void }) {
 
   return (
     <footer className="bg-white shadow-lg p-4">
-      <div className="flex gap-4 items-center">
+      <div className="flex gap-4 items-center flex-col lg:flex-row">
         <Input
           placeholder="Digite sua pergunta..."
           value={input}
@@ -47,6 +48,7 @@ export function Footer({ onSend }: { onSend: (input: IMessage) => void }) {
           onKeyDown={handleKeyDown}
           className="flex-1 text-base"
         />
+        <div className='flex gap-4 w-full lg:w-auto'>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button className="flex items-center bg-secondary hover:bg-secondary/90">
@@ -70,9 +72,10 @@ export function Footer({ onSend }: { onSend: (input: IMessage) => void }) {
             )}
           </DropdownMenuContent>
         </DropdownMenu>
-        <Button className="text-base" onClick={() => handleSend()} disabled={!input}>
+        <Button className="text-base w-full" onClick={() => handleSend()} disabled={!input}>
           Enviar <Star className="w-4 h-4 ml-2 text-white" />
         </Button>
+        </div>
       </div>
     </footer>
   );
