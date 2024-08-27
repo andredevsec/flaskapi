@@ -28,7 +28,7 @@ export function useCharacters() {
 export async function apiBot({ prompt }: {prompt: string}) {
     const apiKey = import.meta.env.VITE_API_KEY;
     try {
-        const response = await axios.post('https://flaskia2-acfeb9eygrh2hvbm.eastus-01.azurewebsites.net/',{ consulta: prompt }, {
+        const response = await axios.post('https://flaskia2-acfeb9eygrh2hvbm.eastus-01.azurewebsites.net/api',{ consulta: prompt }, {
             headers: {
                 'Authorization': apiKey,
             }

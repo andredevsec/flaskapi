@@ -12,7 +12,7 @@ export function ResultDisplay({ resultData }: { resultData: IMessage }) {
             {!isUser && character?.image && <div className="w-14 h-14 rounded-full border-primary border-2 overflow-hidden">
                 <img src={character.image} alt={character.name} />
             </div>}
-            <p className="text-xl" dangerouslySetInnerHTML={{ __html: message }} />
+            <p className="text-xl flex-1" dangerouslySetInnerHTML={{ __html: message }} />
         </div>
     </div>
   );

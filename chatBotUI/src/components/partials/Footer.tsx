@@ -33,6 +33,8 @@ export function Footer({ onSend }: { onSend: (input: IMessage) => void }) {
         prompt: input,
     }
     onSend(message);
+    setInput('');
+    
   }
 
   return (
@@ -68,7 +70,7 @@ export function Footer({ onSend }: { onSend: (input: IMessage) => void }) {
             )}
           </DropdownMenuContent>
         </DropdownMenu>
-        <Button className="text-base" onClick={() => handleSend()}>
+        <Button className="text-base" onClick={() => handleSend()} disabled={!input}>
           Enviar <Star className="w-4 h-4 ml-2 text-white" />
         </Button>
       </div>
