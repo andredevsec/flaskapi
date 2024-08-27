@@ -1,24 +1,14 @@
-import { Compass, Info, MapPin, School } from "lucide-react";
+import { Compass, Info, Loader, MapPin, School } from "lucide-react";
 import { CardComponent } from "./CardComponent";
 import { useState } from "react";
 import { Footer } from "./Footer";
 
 export function Painel() {
-  const [input, setInput] = useState('');
   const [recentPrompt, setRecentPrompt] = useState('');
-  const [showResult, setShowResult] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [showResult, setShowResult] = useState(true);
+  const [loading, setLoading] = useState(true);
   const [resultData, setResultData] = useState('');
 
-  const handleKeyDown = (event) => {
-    if (event.key === 'Enter') {
-      onSentApi();
-    }
-  };
-
-  const onSentApi = async () => {
-    // Lógica para fazer a requisição para a API
-  };
 
   return (
     <div className="flex flex-col flex-1 min-h-screen p-4 bg-gray-100">
@@ -57,7 +47,10 @@ export function Painel() {
           <div className="flex flex-1 flex-col items-start space-y-4 mt-6">
             <h2 className="text-lg font-semibold">{recentPrompt}</h2>
             {loading ? (
-              <div className="animate-pulse text-gray-400">Carregando...</div>
+               <div className="flex items-center space-x-2 animate-pulse">
+               <Loader className="w-8 h-8 animate-spin text-gray-400" />
+               <span className="text-xl">Carregando...</span>
+             </div>
             ) : (
               <p className="text-gray-600" dangerouslySetInnerHTML={{ __html: resultData }} />
             )}

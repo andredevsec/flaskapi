@@ -9,6 +9,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 export function Footer() {
   const [input, setInput] = useState('');
   const [characters, setCharacters] = useState<{name: string}[]>([]);
+  const [selectedCharacter, setSelectedCharacter] = useState<any>();
 
   const fetchCharacters = async () => {
     try {
@@ -30,38 +31,45 @@ export function Footer() {
   };
 
   const onSentApi = async () => {
+    console.log('Pergunta:', input);
+    console.log('Personagem:', selectedCharacter);
     // Lógica para enviar a pergunta ou realizar outra ação
+  };
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const handleSelectCharacter = (character: any) => {
+    setSelectedCharacter(character);
   };
 
   return (
     <footer className="bg-white shadow-lg p-4">
       <div className="flex gap-4 items-center">
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button className="flex items-center">
-              Selecione um personagem
-              <ChevronDown className="ml-2 w-4 h-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent className="w-56">
-            {characters.map((character) => {
-                console.log(character);
-                return (
-              <DropdownMenuItem key={character.name} className="cursor-pointer">
-                {character.name}
-              </DropdownMenuItem>
-            )
-            })}
-          </DropdownMenuContent>
-        </DropdownMenu>
-
-        <Input
+      <Input
           placeholder="Digite sua pergunta..."
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={handleKeyDown}
           className="flex-1 text-base"
         />
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button className="flex items-center bg-secondary hover:bg-secondary/90">
+              {selectedCharacter?.name ?? 'Selecione um personagem'}
+              <ChevronDown className="ml-2 w-4 h-4" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent className="w-56">
+            {characters.map((character) => (
+              <DropdownMenuItem 
+                key={character.name} 
+                className="cursor-pointer hover:bg-secondary/90 hover:text-white px-3 py-2"
+                onClick={() => handleSelectCharacter(character)}
+              >
+                {character.name}
+              </DropdownMenuItem>
+            ))}
+          </DropdownMenuContent>
+        </DropdownMenu>
         <Button className="text-base" onClick={onSentApi}>
           Enviar <Star className="w-4 h-4 ml-2 text-white" />
         </Button>
