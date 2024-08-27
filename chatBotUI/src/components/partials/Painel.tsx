@@ -2,7 +2,7 @@ import { useState } from "react";
 import { CardComponent } from "./CardComponent";
 import { Footer } from "./Footer";
 import { ResultDisplay } from "./ResultDisplay";
-import { Compass, Info, MapPin, School } from "lucide-react";
+import { Compass, Info, Loader, MapPin, School } from "lucide-react";
 import { IMessage } from "@/interfaces/message";
 import { apiBot } from "@/utils/useApi";
 
@@ -81,11 +81,16 @@ export function Painel() {
           resultData?.map((result, index) => (
             <ResultDisplay
               key={index}
-              loading={loading}
               resultData={result}
             />
           ))
         )}
+        {loading && (
+            <div className="mt-8 flex items-center space-x-2 animate-pulse justify-center">
+              <Loader className="w-8 h-8 animate-spin text-gray-400" />
+            <span className="text-xl">Carregando...</span>
+          </div>
+          )},
       </main>
 
       <Footer onSend={handleCardClick} />
