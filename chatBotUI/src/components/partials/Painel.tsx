@@ -1,8 +1,7 @@
-import { Compass, Info, MapPin, School, Star } from "lucide-react";
-import { Input } from "../ui/input";
-import { Button } from "../ui/button";
+import { Compass, Info, MapPin, School } from "lucide-react";
 import { CardComponent } from "./CardComponent";
 import { useState } from "react";
+import { Footer } from "./Footer";
 
 export function Painel() {
   const [input, setInput] = useState('');
@@ -66,18 +65,7 @@ export function Painel() {
         )}
       </main>
 
-      <footer className="bg-white shadow-lg p-4">
-        <div className="flex gap-4 items-center=">
-          <Input
-            placeholder="Digite sua pergunta..."
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            onKeyDown={handleKeyDown}
-            className="flex-1 text-base"
-          />
-          <Button className="text-base" onClick={onSentApi}>Enviar <Star className="w-4 h-4 ml-2 text-white" /></Button>
-        </div>
-      </footer>
+      <Footer></Footer>
     </div>
   );
 }

@@ -6,7 +6,9 @@ export function CardComponent({ title, icon, onClick }: { title: string; icon: R
         <CardContent>
           <CardTitle>{title}</CardTitle>
         </CardContent>
-        <CardFooter className="flex justify-center">{icon}</CardFooter>
+        <div className="w-full flex justify-end">
+        <CardFooter className="flex items-end content-end">{icon}</CardFooter>
+        </div>
       </Card>
     );
   }
