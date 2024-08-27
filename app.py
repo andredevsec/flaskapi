@@ -28,7 +28,7 @@ model2 = genai.GenerativeModel( model_name="gemini-1.0-pro")
 
 @app.route("/")
 def home():
-    consulta = "Quem é você ?"
+    consulta = "Quem é goku ?"
     resposta = gerarBuscarConsulta(consulta, modeloEmbeddings)
     prompt = f"Considere a consulta, {consulta},Reescreva as sentenças de resposta de uma forma alternativa, não apresente opções de reescrita, {resposta}"
     response = model2.generate_content(prompt)
